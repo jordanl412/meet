@@ -1,4 +1,4 @@
-# meet
+# meet app
 
 ## Feature 1: Filter Events by City
 **User Story**
