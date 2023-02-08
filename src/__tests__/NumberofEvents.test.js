@@ -7,7 +7,7 @@ describe('<NumberofEvents /> component', () => {
     beforeAll(() => {
         NumberofEventsWrapper = shallow(<NumberofEvents />);
         eventCountInput = NumberofEventsWrapper.find('input.eventCount-input');
-    });
+    }); 
 
     test('NumberofEvents is rendered', () => {
         expect(NumberofEventsWrapper).toBeDefined();
