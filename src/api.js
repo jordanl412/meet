@@ -6,8 +6,7 @@
  * The Set will remove all duplicates from the array.
  */
 
-//import axios from 'axios';
-module.exports = require('./axios');
+import axios from 'axios';
 import { mockData } from './mock-data';
 import NProgress from 'nprogress';
 
