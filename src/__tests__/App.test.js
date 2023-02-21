@@ -67,4 +67,44 @@ describe('<App /> integration', () => {
         expect(AppWrapper.state('events')).toEqual(allEvents);
         AppWrapper.unmount();
     });
+
+    test('App passes "eventCount" state as a prop to NumberofEvents', () => {
+        const AppWrapper = mount(<App />);
+        const AppEventCountState = AppWrapper.state('eventCount');
+        expect(AppEventCountState).not.toEqual(undefined);
+        expect(AppWrapper.find(NumberofEvents).state('eventCount')).toBe(AppEventCountState);
+        AppWrapper.unmount();
+    });
+
+    test('Change the "eventCount" state when the inputValue changes', async () => {
+        const AppWrapper = mount(<App />);
+        const NumberofEventsWrapper = AppWrapper.find(NumberofEvents);
+        const inputField = NumberofEventsWrapper.find('input.eventCount-input');
+        const eventObject = {target: {value: 20}};
+        inputField.simulate('change', eventObject);
+        await getEvents();
+        expect(AppWrapper.state('eventCount')).toBe(20);
+        expect(NumberofEventsWrapper.state('eventCount')).toBe(20);
+        AppWrapper.unmount();
+    });
+
+    test('Number of events rendered matches inputValue', async () => {
+        const AppWrapper = mount(<App />);
+        const NumberofEventsWrapper = AppWrapper.find(NumberofEvents);
+        const eventObject = {target: {value: 1}};
+        await NumberofEventsWrapper.instance().handleInputChanged(eventObject);
+        await getEvents();
+        expect(AppWrapper.state('events')).toHaveLength(1);
+        AppWrapper.unmount();
+    });
+
+    test('Content of event rendered matches content of mock API', async () => {
+        const AppWrapper = mount(<App />);
+        const NumberofEventsWrapper = AppWrapper.find(NumberofEvents);
+        const eventObject = {target: {value: 1}};
+        await NumberofEventsWrapper.instance().handleInputChanged(eventObject);
+        await getEvents();
+        expect(AppWrapper.state('events')).toEqual([mockData[0]]);
+        AppWrapper.unmount();
+    });
 })
