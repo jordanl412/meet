@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { canConstructResponseFromBodyStream } from 'workbox-core/_private';
 
 class Alert extends Component {
     constructor(props) {
@@ -9,7 +8,7 @@ class Alert extends Component {
 
     getStyle = () => {
         return {
-            color: this.color;
+            color: this.color,
         };
     }
 
