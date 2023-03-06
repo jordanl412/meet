@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
+import { ErrorAlert } from './Alert';
 
 class NumberofEvents extends Component {
-    state = { eventCount: 32 }
+    state = { 
+        eventCount: 32,
+        errorText: ''
+     }
 
     handleInputChanged = (event) => {
         const inputValue = event.target.value;
 
-        if (inputValue < 1) {
-            alert('Please select a number from 1 to 32.');
+        if (inputValue < 1 || inputValue>32) {
+            this.setState({
+                errorText: 'Select a number from 1 to 32'
+            })
         } else {
             this.props.updateEvents(null, inputValue);
-            this.setState({ eventCount: inputValue });
+            this.setState({ 
+                eventCount: inputValue,
+            errorText: ''
+            });
         }
     }
 
@@ -23,6 +32,7 @@ class NumberofEvents extends Component {
 
         return(
             <div className='NumberofEvents'>
+                <ErrorAlert text={this.state.errorText} />
                 <h3>Number of events shown:</h3>
                 <input
                     className="eventCount-input"
