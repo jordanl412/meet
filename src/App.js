@@ -92,17 +92,16 @@ class App extends Component {
     if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     const warningMessage = navigator.onLine ? "" : "App is running in offline mode, events may not be up to date"
     return (
-      <div className="App">
+      <div className="App" style={{ display: 'flex', flexDirection: 'column' }}>
         <h1>Meet App</h1>
         <h4>Choose your nearest city</h4>
         <WarningAlert text={warningMessage} />
-        <CitySearch locations={locations} updateEvents={this.updateEvents} />
+        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberofEvents updateEvents={this.updateEvents} eventCount={eventCount} />
         <h4>Events in each city</h4>
         <div className='data-vis-wrapper'>
           <EventGenre events={this.state.events} />
-        
-          <ResponsiveContainer height={400} >
+          <ResponsiveContainer height={400} style={{ display: 'flex', justifyContent: 'center' }}>
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
               <CartesianGrid />
               <XAxis

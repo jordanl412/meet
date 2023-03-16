@@ -13,7 +13,7 @@ const EventGenre = ({ events }) => {
             });
             return data;
         };
-        useEffect(() => { setData()}, [events]);
+        useEffect(() => { setData(); }, [events]);
     
 
     return (
@@ -33,6 +33,6 @@ const EventGenre = ({ events }) => {
             </PieChart>
         </ResponsiveContainer>
     );
-}
+};
 
 export default EventGenre;
