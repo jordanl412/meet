@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Piechart, Pie, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, ResponsiveContainer } from 'recharts';
 
 const EventGenre = ({ events }) => {
     const [data, setData] = useState([]);
